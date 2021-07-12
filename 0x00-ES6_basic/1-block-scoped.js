@@ -1,5 +1,3 @@
-#!/usr/bin/node
-
 export default function taskBlock(trueOrFalse) {
     if (trueOrFalse) {
         task = true;
