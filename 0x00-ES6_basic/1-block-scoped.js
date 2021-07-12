@@ -1,5 +1,3 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable no-use-before-define */
 export default function taskBlock(trueOrFalse) {
   if (trueOrFalse) {
     task = true;
