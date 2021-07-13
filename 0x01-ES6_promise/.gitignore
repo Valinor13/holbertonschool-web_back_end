@@ -3,4 +3,3 @@ node_modules/
 babel.config.js
 *.json
 *-main.js
-utils.js
