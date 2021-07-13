@@ -1,10 +1,6 @@
+/* eslint-disable no-unused-vars */
 export default function getResponseFromAPI() {
-    let p = new Promise((resolve, reject) => {
-        if (1 === 1) {
-            resolve('Success');
-        } else {
-            reject('Failure');
-        }
-    })
-    return p;
+  return new Promise((resolve, reject) => {
+    resolve('Success');
+  });
 }
