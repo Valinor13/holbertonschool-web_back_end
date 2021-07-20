@@ -4,7 +4,7 @@ export default class HolbertonClass {
     this.location = location;
   }
 
-  toNumber() {
+  valueOf() {
     return this.size;
   }
 
