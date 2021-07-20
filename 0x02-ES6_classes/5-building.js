@@ -1,6 +1,7 @@
 export default class Building {
   evacuationWarningMessage() {
-    if (this.evacuationWarningMessage === Building.prototype.evacuationWarningMessage) {
+    if (this.evacuationWarningMessage !== Building.prototype.evacuationWarningMessage
+      && this.evacuationWarningMessage === undefined) {
       throw new Error('Class extending Building must override evacuationWarningMessage');
     }
   }
