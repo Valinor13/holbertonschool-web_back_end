@@ -1,0 +1,1 @@
+This is the ES6 data manipulation project located in the Holberton web back end repository.
