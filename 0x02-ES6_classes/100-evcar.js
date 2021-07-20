@@ -18,6 +18,6 @@ export default class EVCar extends Car {
 
   // brand.setter
   set range(newRange) {
-    this._ramge = newRange;
+    this._range = newRange;
   }
 }
