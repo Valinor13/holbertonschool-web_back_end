@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-unused-vars */
 export default function cleanSet(inputSet, startString) {
-  if (!(startString)) {
+  if (!(startString) || !(startString instanceof String)) {
     return '';
   }
   const retString = '';
