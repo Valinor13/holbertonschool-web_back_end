@@ -4,8 +4,10 @@ export default function cleanSet(inputSet, startString) {
   }
   const retArr = [];
   for (const str of inputSet) {
-    if (str.startsWith(startString)) {
-      retArr.push(str.replace(startString, ''));
+    if (typeof str === 'string') {
+      if (str.startsWith(startString)) {
+        retArr.push(str.replace(startString, ''));
+      }
     }
   }
   return retArr.join('-');
