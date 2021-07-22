@@ -1,15 +1,12 @@
-/* eslint-disable consistent-return */
-/* eslint-disable no-unused-vars */
 export default function cleanSet(inputSet, startString) {
-  if (!(startString) || !(startString instanceof String)) {
+  if (!(startString) || !(typeof startString === 'string')) {
     return '';
   }
-  const retString = '';
-  function findString(element) {
-    if (element.startsWith(startString)) {
-      return retString.concat(element, '-');
+  const retArr = [];
+  for (const str of inputSet) {
+    if (str.startsWith(startString)) {
+      retArr.push(str.replace(startString, ''));
     }
   }
-  inputSet.forEach(findString);
-  return retString.replace(startString, '');
+  return retArr.join('-');
 }
