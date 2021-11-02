@@ -3,20 +3,19 @@
 
 
 from typing import Union, Tuple
-import math
 
 
-def to_kv(k: str, v: Union[int, float]) -> Tuple:
+def to_kv(k: str, v: Union[int, float]) -> Tuple[str, float]:
 
     """ To KV: Creates a tuple
             Params:
                 k: string - first value in tuple
                 v: int/float - base for second value in tuple
             Variables:
-                sqRt: float - square root of v
+                sq: float - square of v
             Return:
-                Tuple with first value k and second value sqRt """
+                Tuple with first value k and second value sq """
 
-    sqRt: float = math.sqrt(v)
+    sq: float = (v * v)
 
-    return (k, sqRt)
+    return (k, sq)
