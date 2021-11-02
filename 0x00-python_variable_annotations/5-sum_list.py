@@ -2,7 +2,10 @@
 """ This module contains type annotated functions """
 
 
-def sum_list(input_list: list[float]) -> float:
+from typing import List
+
+
+def sum_list(input_list: List[float]) -> float:
 
     """ Sum List: Adds list of floats to sum
             Params:
