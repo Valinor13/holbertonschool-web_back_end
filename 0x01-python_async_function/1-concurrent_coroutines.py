@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+""" This module contains async/await functions """
+
+
+import asyncio
+from typing import List
+wait_random = __import__('0-basic_async_syntax').wait_random
+
+
+async def wait_n(n: int, max_delay: int) -> List[float]:
+
+    """ Wait N: Calls the wait random function n times
+            Params:
+                n: int - An integer indicating how many times to call the
+                         wait_random function
+                max_delay: int - An integer representing the max delay time
+            Variables:
+                time_list: List[future] - List of futures assigned by
+                                          random call
+                time_list_ascending: List[float] - List of floats returned by
+                                                   futures
+            Return:
+                Time list in ascending order """
+
+    time_list = []
+    time_list_ascending = []
+
+    for i in range(n):
+        time_list.append(asyncio.create_task(wait_random(max_delay)))
+
+    for future in time_list:
+        time_list_ascending.append(await future)
+
+    return time_list_ascending
