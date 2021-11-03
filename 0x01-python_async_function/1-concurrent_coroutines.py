@@ -28,7 +28,7 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
     for i in range(n):
         time_list.append(asyncio.create_task(wait_random(max_delay)))
 
-    for future in time_list:
+    for future in asyncio.as_completed(time_list):
         time_list_ascending.append(await future)
 
     return time_list_ascending
