@@ -41,4 +41,10 @@ class LRUCache(BaseCaching):
         """ Returns dictionary item based on key value """
 
         if key and key in self.cache_data.keys():
+            self.lru_cache_order[self.counter] = key
+            self.counter += 1
+            for k, v in self.lru_cache_order.items():
+                if v == key and k != (self.counter - 1):
+                    del self.lru_cache_order[k]
+                    break
             return self.cache_data[key]
