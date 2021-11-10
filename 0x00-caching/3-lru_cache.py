@@ -6,7 +6,7 @@ from base_caching import BaseCaching
 
 
 class LRUCache(BaseCaching):
-    """ The LFUCache object overwrites items at the end of the chain """
+    """ The LRUCache object overwrites items at the end of the chain """
 
     def __init__(self):
         super().__init__()
