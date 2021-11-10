@@ -10,19 +10,19 @@ class LIFOCache(BaseCaching):
 
     def __init__(self):
         super().__init__()
-        self.fifo_cache_order = []
+        self.lifo_cache_order = []
 
     def put(self, key, item):
         """ Assigns key/value pair to cache_data """
 
         if key and item:
             self.cache_data[key] = item
-            self.fifo_cache_order.append(key)
+            self.lifo_cache_order.append(key)
 
         if len(self.cache_data) > self.MAX_ITEMS:
-            fifo_key = self.fifo_cache_order.pop(-2)
-            print(f"DISCARD: {fifo_key}")
-            del self.cache_data[fifo_key]
+            lifo_key = self.lifo_cache_order.pop(-2)
+            print(f"DISCARD: {lifo_key}")
+            del self.cache_data[lifo_key]
 
     def get(self, key):
         """ Returns dictionary item based on key value """
