@@ -33,6 +33,7 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+        """ Get Page: returns list of results based on the input page num """
         csv_rows = []
         pagi_list = []
         assert isinstance(page, int)
