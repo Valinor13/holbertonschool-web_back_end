@@ -34,19 +34,13 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """ Get Page: returns list of results based on the input page num """
-        csv_rows = []
         pagi_list = []
         assert isinstance(page, int)
         assert isinstance(page_size, int)
         assert (page, page_size) > (0, 0)
         pagi = index_range(page, page_size)
-        with open(self.DATA_FILE, 'r') as f:
-            csvr = csv.reader(f)
-            for row in csvr:
-                csv_rows.append(row)
-            if pagi[0] > len(csv_rows) / page_size:
-                return []
-            header = csv_rows.pop(0)
-            for x in range(pagi[0], pagi[1]):
-                pagi_list.append(csv_rows[x])
+        if pagi[0] > len(self.__dataset) / page_size:
+            return []
+        for x in range(pagi[0], pagi[1]):
+                pagi_list.append(self.__dataset[x])
         return pagi_list
