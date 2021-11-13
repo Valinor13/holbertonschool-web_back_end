@@ -57,7 +57,7 @@ class Server:
         tp = int(totalPages) if totalPages == int(totalPages) \
             else int(totalPages + 1)
         prevPage = None if page == 1 else page - 1
-        nextPage = None if page == tp else page + 1
+        nextPage = None if page >= tp else page + 1
 
         return {
                 'page_size': page_size,
