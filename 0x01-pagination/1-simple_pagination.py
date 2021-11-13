@@ -35,12 +35,13 @@ class Server:
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """ Get Page: returns list of results based on the input page num """
         pagi_list = []
-        assert isinstance(page, int)
-        assert isinstance(page_size, int)
-        assert (page, page_size) > (0, 0)
+        assert (isinstance(page, int),
+                isinstance(page_size, int),
+                page, page_size) >= (True, True, 1, 1)
         pagi = index_range(page, page_size)
-        if pagi[0] > len(self.__dataset) / page_size:
+        ds = self.dataset()
+        if pagi[0] > len(ds) / page_size:
             return []
         for x in range(pagi[0], pagi[1]):
-                pagi_list.append(self.__dataset[x])
+            pagi_list.append(ds[x])
         return pagi_list
