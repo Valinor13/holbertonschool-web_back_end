@@ -55,7 +55,7 @@ def main():
     for row in cursor:
         dict_join = []
         for k, v in row.items():
-            dict_join.append(str(k) + '=' + str(v))
+            dict_join.append(f'{k}={v}')
         log = ';'.join(dict_join)
         logger.info(log)
     cursor.close()
