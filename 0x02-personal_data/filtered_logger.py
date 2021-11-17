@@ -54,8 +54,8 @@ def main():
     cursor.execute("SELECT * FROM users;")
     for row in cursor:
         dict_join = []
-        for item in row:
-            dict_join.append('='.join(item))
+        for k, v in row.items():
+            dict_join.append(str(k) + '=' + str(v))
         log = ';'.join(dict_join)
         logger.info(log)
     cursor.close()
