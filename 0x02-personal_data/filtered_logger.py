@@ -7,7 +7,7 @@ import re
 from typing import List
 
 
-PII_FIELDS = ('password', 'ip', 'ssn', 'phone', 'name')
+PII_FIELDS = ('password', 'phone', 'ssn', 'email', 'name')
 
 
 def filter_datum(fields: List[str],
