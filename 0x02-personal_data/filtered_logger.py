@@ -37,8 +37,9 @@ def get_logger() -> logging.Logger:
 
 
 def get_db() -> mysql.connector.connection.MySQLConnection:
+    """ get database function """
     NotImplemented
-    print(os.path)
+    print('12')
 
 
 class RedactingFormatter(logging.Formatter):
