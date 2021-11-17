@@ -38,8 +38,11 @@ def get_logger() -> logging.Logger:
 
 def get_db() -> mysql.connector.connection.MySQLConnection:
     """ get database function """
-    NotImplemented
-    print('12')
+    mydb = mysql.connector.connect(os.getenv('PERSONAL_DATA_DB_HOST'),
+                                   os.getenv('PERSONAL_DATA_DB_USERNAME'),
+                                   os.getenv('PERSONAL_DATA_DB_PASSWORD'),
+                                   os.getenv('PERSONAL_DATA_DB_NAME'))
+    return mydb
 
 
 class RedactingFormatter(logging.Formatter):
