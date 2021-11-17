@@ -50,10 +50,15 @@ def main():
     """ main function for redactor including db """
     logger = get_logger()
     db = get_db()
-    cursor = db.cursor()
+    cursor = db.cursor(dictionary=True)
     cursor.execute("SELECT * FROM users;")
     for row in cursor:
-        logger.info(row)
+        dict_join = []
+        for item in row:
+            dict_join.append('='.join(item))
+        log = ';'.join(dict_join)
+        logger.info(log)
+    cursor.close()
     db.close()
 
 
