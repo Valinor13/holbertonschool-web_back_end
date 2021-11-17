@@ -30,7 +30,7 @@ def get_logger() -> logging.Logger:
     stream_handler = logging.StreamHandler()
     stream_handler.setFormatter(formatter)
     logger.addHandler(stream_handler)
-    logger.propagate(False)
+    logger.propagate = False
     return logger
 
 
