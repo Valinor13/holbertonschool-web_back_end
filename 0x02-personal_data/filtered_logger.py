@@ -4,6 +4,8 @@
 
 import logging
 import re
+import mysql.connector
+import os
 from typing import List
 
 
@@ -32,6 +34,11 @@ def get_logger() -> logging.Logger:
     logger.addHandler(stream_handler)
     logger.propagate = False
     return logger
+
+
+def get_db() -> mysql.connector.connection.MySQLConnection:
+    NotImplemented
+    print(os.path)
 
 
 class RedactingFormatter(logging.Formatter):
