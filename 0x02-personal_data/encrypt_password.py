@@ -7,6 +7,6 @@ import bcrypt
 
 def hash_password(password: str) -> bytes:
     """ Salt & Pepper a hashpass """
-    pdub = bytes(password)
+    pdub = bytes(password, 'ascii')
     salt = bcrypt.gensalt()
     return bcrypt.hashpw(pdub, salt)
