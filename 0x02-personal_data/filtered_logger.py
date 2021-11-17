@@ -6,6 +6,9 @@ import logging
 import re
 
 
+PII_FIELDS = ('password', 'ip', 'ssn', 'phone', 'email')
+
+
 def filter_datum(fields, redaction, message, separator) -> str:
     """ Filter Datum filters the string for given fields """
     msgs = message.split(separator)
@@ -13,6 +16,17 @@ def filter_datum(fields, redaction, message, separator) -> str:
         for i in range(len(msgs)):
             msgs[i] = re.sub(f'{field}=.*', f'{field}={redaction}', msgs[i])
     return separator.join(msgs)
+
+
+def get_logger() -> logging.Logger:
+    """ Gets a logRecord for class """
+    logger = logging.getLogger('user_data')
+    logger.setLevel(logging.INFO)
+    formatter = logging.Formatter(RedactingFormatter)
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(formatter)
+    logger.addHandler(stream_handler)
+    return logger
 
 
 class RedactingFormatter(logging.Formatter):
