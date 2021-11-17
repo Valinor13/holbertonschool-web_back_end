@@ -14,6 +14,6 @@ def hash_password(password: str) -> bytes:
 
 def is_valid(hashed_password: bytes, password: str) -> bool:
     """ Checks Seasoning """
-    if bcrypt.checkpw(hash_password(password), hashed_password):
+    if bcrypt.checkpw(bytes(password, 'ascii'), hashed_password):
         return True
     return False
