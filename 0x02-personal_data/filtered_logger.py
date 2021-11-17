@@ -48,20 +48,12 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
 
 def main():
     """ main function for redactor including db """
-    formatter = RedactingFormatter(PII_FIELDS)
+    logger = get_logger()
     db = get_db()
     cursor = db.cursor()
     cursor.execute("SELECT * FROM users;")
     for row in cursor:
-        log = logging.LogRecord('root',
-                                logging.INFO,
-                                None,
-                                None,
-                                row,
-                                None,
-                                None)
-        print(formatter.format(log))
-    cursor.close()
+        logger.info(row)
     db.close()
 
 
