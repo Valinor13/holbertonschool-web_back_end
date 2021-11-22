@@ -20,6 +20,7 @@ if getenv('AUTH_TYPE') is 'auth':
 
 @app.before_request
 def before_request():
+    """ Before request handler """
     if auth is not None:
         if auth.require_auth(request.path, ['/api/v1/status/',
                                             '/api/v1/unauthorized/',
