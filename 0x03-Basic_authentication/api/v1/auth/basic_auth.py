@@ -13,3 +13,8 @@ class BasicAuth(Auth):
         """ Extract Base64 method """
         if authorization_header is None:
             return None
+        if isinstance(authorization_header, str) is False:
+            return None
+        if authorization_header.startswith('Basic ') is False:
+            return None
+        return (authorization_header[5:])
