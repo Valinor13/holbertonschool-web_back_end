@@ -16,7 +16,6 @@ class BasicAuth(Auth):
             return None
         if isinstance(authorization_header, str) is False:
             return None
-        auth_str = base64.b64decode(authorization_header)
-        if auth_str.startswith('Basic ') is False:
+        if authorization_header.startswith('Basic ') is False:
             return None
-        return (auth_str[5:])
+        return (authorization_header[6:])
