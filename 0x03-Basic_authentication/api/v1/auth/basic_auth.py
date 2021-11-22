@@ -3,6 +3,7 @@
 from flask import request
 from typing import TypeVar, List
 from api.v1.auth.auth import Auth
+import base64
 
 
 class BasicAuth(Auth):
@@ -15,6 +16,7 @@ class BasicAuth(Auth):
             return None
         if isinstance(authorization_header, str) is False:
             return None
-        if authorization_header.startswith('Basic ') is False:
+        auth_str = base64.b64decode(authorization_header)
+        if auth_str.startswith('Basic ') is False:
             return None
-        return (authorization_header[5:])
+        return (auth_str[5:])
