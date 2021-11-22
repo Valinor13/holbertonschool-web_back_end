@@ -2,7 +2,7 @@
 """ Auth module
 """
 from flask import request
-from typing import TypeVar
+from typing import TypeVar, List
 
 
 TIMESTAMP_FORMAT = "%Y-%m-%dT%H:%M:%S"
