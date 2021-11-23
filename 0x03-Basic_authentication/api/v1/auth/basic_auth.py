@@ -2,7 +2,8 @@
 """ Basic Auth module with inherited class """
 
 
-from typing import List, Tuple
+from typing import List, Tuple, TypeVar
+from models.base import DATA, Base
 from api.v1.auth.auth import Auth
 import base64
 
@@ -49,3 +50,19 @@ class BasicAuth(Auth):
         if ':' not in decoded_base64_authorization_header:
             return None, None
         return decoded_base64_authorization_header.split(':')
+
+    def user_object_from_credentials(self,
+                                     user_email: str,
+                                     user_pwd: str) -> TypeVar('User'):
+        """ Create object of user from credential """
+
+        if not user_email or not user_pwd or len(DATA) == 0:
+            return None
+        if not isinstance(user_email, str) or not isinstance(user_pwd, str):
+            return None
+        base_user = Base.search(user_email)
+        if not base_user:
+            return None
+        if not base_user.is_valid_password(user_pwd):
+            return None
+        return base_user
