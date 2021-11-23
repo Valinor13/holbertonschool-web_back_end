@@ -56,7 +56,7 @@ class BasicAuth(Auth):
                                      user_pwd: str) -> TypeVar('User'):
         """ Create object of user from credential """
 
-        if not user_email or not user_pwd or len(DATA) == 0:
+        if not user_email or not user_pwd:
             return None
         if not isinstance(user_email, str) or not isinstance(user_pwd, str):
             return None
