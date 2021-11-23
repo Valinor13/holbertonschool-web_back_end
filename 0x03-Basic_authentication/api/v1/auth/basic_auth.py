@@ -3,7 +3,7 @@
 
 
 from typing import List, Tuple, TypeVar
-from models.base import DATA, Base
+from models.user import User
 from api.v1.auth.auth import Auth
 import base64
 
@@ -63,7 +63,7 @@ class BasicAuth(Auth):
             return None
 
         try:
-            user_list = Base.search({'email': user_email})
+            user_list = User.search({'email': user_email})
             for user in user_list:
                 if user.is_valid_password(user_pwd):
                     return user
