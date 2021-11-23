@@ -56,13 +56,16 @@ class BasicAuth(Auth):
                                      user_pwd: str) -> TypeVar('User'):
         """ Create object of user from credential """
 
-        if user_email is None or user_pwd is None or len(DATA) == 0:
+        if user_email is None or user_pwd is None:
             return None
         if isinstance(user_email,
                       str) is False or isinstance(user_pwd, str) is False:
             return None
-        
-        user_list = Base.search({'email': user_email})
-        for user in user_list:
-            if user.is_valid_password(user_pwd):
-                return user
+
+        try:
+            user_list = Base.search({'email': user_email})
+            for user in user_list:
+                if user.is_valid_password(user_pwd):
+                    return user
+        except Exception:
+            return None
