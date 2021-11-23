@@ -2,8 +2,7 @@
 """ Basic Auth module with inherited class """
 
 
-from flask import request
-from typing import TypeVar, List, tuple
+from typing import List, Tuple
 from api.v1.auth.auth import Auth
 import base64
 
@@ -40,7 +39,7 @@ class BasicAuth(Auth):
 
     def extract_user_credentials(self,
                                  decoded_base64_authorization_header:
-                                 str) -> tuple(str, str):
+                                 str) -> Tuple(str, str):
         """ Get user credentials if string is correctly formatted """
 
         if decoded_base64_authorization_header is None:
