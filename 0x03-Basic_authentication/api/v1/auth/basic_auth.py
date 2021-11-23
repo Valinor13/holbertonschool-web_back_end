@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """ Basic Auth module with inherited class """
+
+
 from flask import request
 from typing import TypeVar, List, tuple
 from api.v1.auth.auth import Auth
