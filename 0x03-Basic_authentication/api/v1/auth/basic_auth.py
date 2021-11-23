@@ -37,7 +37,7 @@ class BasicAuth(Auth):
     def extract_user_credentials(self,
                                  decoded_base64_authorization_header:
                                  str) -> tuple(str, str):
-        """ Get user credentials """
+        """ Get user credentials if string is correctly formatted """
         if decoded_base64_authorization_header is None:
             return None, None
         if isinstance(decoded_base64_authorization_header, str) is False:
