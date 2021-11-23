@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" Basic Auth module """
+""" Basic Auth module with inherited class """
 from flask import request
 from typing import TypeVar, List, tuple
 from api.v1.auth.auth import Auth
@@ -7,11 +7,12 @@ import base64
 
 
 class BasicAuth(Auth):
-    """ Basic Auth class """
+    """ Basic Auth class inheriting from Auth base """
 
     def extract_base64_authorization_header(self,
                                             authorization_header: str) -> str:
-        """ Extract Base64 method """
+        """ Req check for base64 extraction """
+
         if authorization_header is None:
             return None
         if isinstance(authorization_header, str) is False:
@@ -24,6 +25,7 @@ class BasicAuth(Auth):
                                            base64_authorization_header:
                                            str) -> str:
         """ decode base64 encoded string """
+
         if base64_authorization_header is None:
             return None
         if isinstance(base64_authorization_header, str) is False:
@@ -38,6 +40,7 @@ class BasicAuth(Auth):
                                  decoded_base64_authorization_header:
                                  str) -> tuple(str, str):
         """ Get user credentials if string is correctly formatted """
+
         if decoded_base64_authorization_header is None:
             return None, None
         if isinstance(decoded_base64_authorization_header, str) is False:
