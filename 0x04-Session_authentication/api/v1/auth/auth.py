@@ -16,9 +16,8 @@ class Auth():
             return True
         if excluded_paths is None or len(excluded_paths) == 0:
             return True
-        for item in excluded_paths:
-            if path in item or (path + '/') in item:
-                return False
+        if path in excluded_paths or (path + '/') in excluded_paths:
+            return False
         return True
 
     def authorization_header(self, request=None) -> str:
@@ -36,7 +35,5 @@ class Auth():
     def session_cookie(self, request=None):
         """ getter method for the session id cookie """
         if not request:
-            return None
-        if not request.cookies.get(getenv('SESSION_NAME')):
             return None
         return request.cookies.get(getenv('SESSION_NAME'))
