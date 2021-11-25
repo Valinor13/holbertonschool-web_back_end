@@ -14,6 +14,16 @@ class SessionAuth(Auth):
 
     user_id_by_session_id = {}
 
+    def destroy_session(self, request=None):
+        """ Deletes session id from dictionary """
+        if not request or not self.session_cookie(request):
+            return False
+        id_ = self.session_cookie(request)
+        if not self.user_id_for_session_id(id_):
+            return False
+        del self.user_id_by_session_id[id_]
+        return True
+
     def create_session(self, user_id: str = None) -> str:
         """ Creates a session id and assigns it to the user id """
         if not user_id or not isinstance(user_id, str):
