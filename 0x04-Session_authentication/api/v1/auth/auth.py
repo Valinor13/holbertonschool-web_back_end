@@ -29,11 +29,11 @@ class Auth():
             return None
         return request.headers.get('Authorization')
 
-    def current_user(self, request = None) -> TypeVar('User'):
+    def current_user(self, request=None) -> TypeVar('User'):
         """ Returns current user """
         return None
-    
-    def session_cookie(self, request = None):
+
+    def session_cookie(self, request=None):
         """ getter method for the session id cookie """
         if not request:
             return None
