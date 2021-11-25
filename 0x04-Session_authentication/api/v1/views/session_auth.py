@@ -27,6 +27,8 @@ def login() -> str:
         return jsonify({'error': 'password missing'}), 400
     try:
         user_list = User.search({'email': email})
+        if len(user_list) == 0:
+            raise Exception
         for user in user_list:
             if user.is_valid_password(password):
                 from api.v1.app import auth
@@ -34,6 +36,6 @@ def login() -> str:
                 response = jsonify(user.to_json())
                 response.set_cookie(getenv('SESSION_NAME'), id_)
                 return response
-        return jsonify({ "error": "wrong password" }), 401
+        return jsonify({"error": "wrong password"}), 401
     except Exception:
-        return jsonify({ "error": "no user found for this email" }), 404
+        return jsonify({"error": "no user found for this email"}), 404
