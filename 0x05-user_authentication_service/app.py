@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """ Appy flask navigator module """
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from auth import Auth
-import requests
 
 
 AUTH = Auth()
@@ -24,8 +23,8 @@ def users():
     Return:
       - returns json with new email or already registered message
     """
-    pw = requests.form.get('password')
-    email = requests.form.get('email')
+    pw = request.form.get('password')
+    email = request.form.get('email')
 
     try:
         AUTH.register_user(email, pw)
