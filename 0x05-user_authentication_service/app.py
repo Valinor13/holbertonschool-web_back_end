@@ -21,7 +21,7 @@ def welcome_message() -> str:
 def users():
     """ POST users
     Return:
-      - 
+      - returns json with new email or already registered message
     """
     pw = requests.form.get('password')
     email = requests.form.get('email')
