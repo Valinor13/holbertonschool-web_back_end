@@ -2,7 +2,6 @@
 """ Module for ORM objects """
 
 
-import bcrypt
 from sqlalchemy import Column, Integer, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -21,4 +20,4 @@ class User(Base):
     reset_token = Column(String(250), nullable=True)
 
     def __repr__(self):
-        return f"<User(email={self.email}, session_id={session_id})>"
+        return f"<User(email={self.email}, session_id={self.session_id})>"
