@@ -49,3 +49,17 @@ class DB:
             raise NoResultFound
         except Exception:
             raise InvalidRequestError
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """ Update user and commit changes to database return none """
+        try:
+            user = self.find_user_by(id=user_id)
+        except NoResultFound:
+            raise NoResultFound
+        except Exception:
+            raise InvalidRequestError
+        for key in kwargs:
+            try:
+                user.key = kwargs[key]
+            except Exception:
+                raise ValueError
