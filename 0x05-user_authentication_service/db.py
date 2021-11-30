@@ -31,6 +31,9 @@ class DB:
             self.__session = DBSession()
         return self.__session
 
-    def add_user(email: str, hashed_password: str) -> TypeVar('User'):
+    def add_user(self, email: str, hashed_password: str) -> TypeVar('User'):
         """ Add user to database and return user object """
-        return User(email=email, hased_password=hashed_password)
+        newUser = User(email=email, hashed_password=hashed_password)
+        self._session.add(newUser)
+        self._session.commit()
+        return newUser
