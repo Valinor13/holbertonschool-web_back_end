@@ -59,7 +59,7 @@ class DB:
         except Exception:
             raise InvalidRequestError
         for key in kwargs:
-            if user.key:
+            try:
                 user.key = kwargs[key]
-            else:
+            except Exception:
                 raise ValueError
