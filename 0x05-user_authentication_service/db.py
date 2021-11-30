@@ -60,7 +60,8 @@ class DB:
             raise InvalidRequestError
         for k, v in kwargs.items():
             try:
-                setattr(user, k, v)
+                getattr(user, k)
             except Exception:
                 raise ValueError
+            setattr(user, k, v)
         self._session.commit()
