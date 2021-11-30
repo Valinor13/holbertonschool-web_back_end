@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """ Module for ORM objects """
 
-import bcrypt
-from sqlalchemy import Column, Integer, String, create_engine
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
 
