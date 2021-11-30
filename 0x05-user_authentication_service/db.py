@@ -39,7 +39,7 @@ class DB:
         return newUser
 
     def find_user_by(self, **kwargs):
-        """ """
+        """ Find user by keyword argument and return user from database """
         try:
             q = self._session.query(User).filter_by(**kwargs).first()
             if not q:
