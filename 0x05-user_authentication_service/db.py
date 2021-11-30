@@ -58,8 +58,9 @@ class DB:
             raise NoResultFound
         except Exception:
             raise InvalidRequestError
-        for key in kwargs:
+        for k, v in kwargs.items():
             try:
-                user.key = kwargs[key]
+                setattr(user, k, v)
             except Exception:
                 raise ValueError
+        self._session.commit()
