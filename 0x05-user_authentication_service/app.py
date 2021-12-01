@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """ Appy flask navigator module """
-from flask import Flask, jsonify, request, abort
+from flask import Flask, jsonify, request, abort, redirect
 from auth import Auth
 
 
@@ -61,6 +61,7 @@ def logout():
     if not user:
         abort(403)
     AUTH.destroy_session(user.id)
+    return redirect('/')
 
 
 if __name__ == "__main__":
