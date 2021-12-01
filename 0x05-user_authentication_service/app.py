@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """ Appy flask navigator module """
-from flask import Flask, jsonify, request, abort, redirect
+from flask import Flask, jsonify, request, abort, redirect, url_for
 from auth import Auth
 
 
@@ -56,11 +56,11 @@ def get_profile():
     Return:
       - return with the user email
     """
-    sesh_id = request.form.get('session_id')
+    sesh_id = request.cookies.get('session_id')
     user = AUTH.get_user_from_session_id(sesh_id)
-    if user:
-        return jsonify({'email': user.email}), 200
-    abort(403)
+    if not user:
+        abort(403)
+    return jsonify({'email': user.email}), 200
 
 
 @app.route('/sessions', methods=['DELETE'], strict_slashes=False)
@@ -69,12 +69,12 @@ def logout():
     Return:
       - returns redirection to welcome message
     """
-    sesh_id = request.form.get('session_id')
+    sesh_id = request.cookies.get('session_id')
     user = AUTH.get_user_from_session_id(sesh_id)
-    if user:
-        AUTH.destroy_session(user.id)
-        return redirect('/'), 302
-    abort(403)
+    if not user:
+        abort(403)
+    AUTH.destroy_session(user.id)
+    return redirect(url_for('index'))
 
 
 if __name__ == "__main__":
