@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """ Appy flask navigator module """
-from flask import Flask, jsonify, request, make_response
+from flask import Flask, jsonify, request, make_response, abort
 from auth import Auth
 
 
@@ -44,6 +44,8 @@ def login():
         sesh_id = AUTH.create_session(email)
         cookie(sesh_id)
         return jsonify({'email': email, 'message': 'logged in'})
+    else:
+        abort(401)
 
 @app.route('/cookie')
 def cookie(sesh_id: str):
