@@ -22,6 +22,16 @@ class Auth:
             hp = _hash_password(password)
             return self._db.add_user(email, hp)
 
+    def valid_login(self, email: str, password: str) -> bool:
+        """ Validates hashed password and returns true or false """
+        try:
+            user = self._db.find_user_by(email=email)
+            if bcrypt.checkpw(bytes(password, 'utf-8'), user.hashed_password):
+                return True
+            return False
+        except Exception:
+            return False
+
 
 def _hash_password(password: str) -> bytes:
     """ salt & pepper the hash browns """
