@@ -2,6 +2,7 @@
 """ This module hashes a password and returns it in bytes """
 import bcrypt
 from sqlalchemy.orm.exc import NoResultFound
+from werkzeug.wrappers import request
 from db import DB
 from user import User
 import uuid
@@ -42,6 +43,12 @@ class Auth:
             return sesh_id
         except Exception:
             return ""
+
+    def get_user_from_session_id(self, session_id: str) -> User:
+        """ return user based on session id """
+        if not session_id or len(session_id) == 0:
+            return None
+        return request.cookies.get('session_id')
 
 
 def _hash_password(password: str) -> bytes:
