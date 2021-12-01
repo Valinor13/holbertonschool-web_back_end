@@ -62,5 +62,6 @@ def logout():
         abort(403)
     AUTH.destroy_session(user.id)
 
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
