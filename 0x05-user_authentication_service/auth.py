@@ -2,6 +2,7 @@
 """ This module hashes a password and returns it in bytes """
 import bcrypt
 from sqlalchemy.orm.exc import NoResultFound
+from werkzeug.datastructures import V
 from werkzeug.wrappers import request
 from db import DB
 from user import User
@@ -68,6 +69,18 @@ class Auth:
             res_toke = _generate_uuid()
             user.reset_token = res_toke
             return res_toke
+        except Exception:
+            raise ValueError
+
+    def update_password(self, reset_token: str, password: str) -> None:
+        """ Updates and stores User password """
+        try:
+            user = self._db.find_user_by(reset_token=reset_token)
+            hashpw = _hash_password(password)
+            self._db.update_user(user.id,
+                                 reset_token=None,
+                                 hashed_password=hashpw)
+            return None
         except Exception:
             raise ValueError
 
