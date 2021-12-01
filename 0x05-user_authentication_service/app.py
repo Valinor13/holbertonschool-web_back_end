@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """ Appy flask navigator module """
-from flask import Flask, jsonify, request, make_response, abort
+from flask import Flask, jsonify, request, abort
 from auth import Auth
 
 
