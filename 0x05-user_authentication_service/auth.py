@@ -80,7 +80,6 @@ class Auth:
             self._db.update_user(user.id,
                                  reset_token=None,
                                  hashed_password=hashpw)
-            return None
         except Exception:
             raise ValueError
 
