@@ -58,9 +58,9 @@ def get_profile():
     """
     sesh_id = request.form.get('session_id')
     user = AUTH.get_user_from_session_id(sesh_id)
-    if not user:
-        abort(403)
-    return jsonify({'email': user.email}), 200
+    if user:
+        return jsonify({'email': user.email}), 200
+    abort(403)
 
 
 @app.route('/sessions', methods=['DELETE'], strict_slashes=False)
@@ -71,10 +71,10 @@ def logout():
     """
     sesh_id = request.form.get('session_id')
     user = AUTH.get_user_from_session_id(sesh_id)
-    if not user:
-        abort(403)
-    AUTH.destroy_session(user.id)
-    return redirect('/')
+    if user:
+        AUTH.destroy_session(user.id)
+        return redirect('/')
+    abort(403)
 
 
 if __name__ == "__main__":
