@@ -50,6 +50,19 @@ def login():
         abort(401)
 
 
+@app.route('/profile', methods=['GET'], strict_slashes=False)
+def get_profile():
+    """ GET profile
+    Return:
+      - return with the user email
+    """
+    sesh_id = request.form.get('session_id')
+    user = AUTH.get_user_from_session_id(sesh_id)
+    if not user:
+        abort(403)
+    return jsonify({'email': user.email}), 200
+
+
 @app.route('/sessions', methods=['DELETE'], strict_slashes=False)
 def logout():
     """ DELETE sessions
