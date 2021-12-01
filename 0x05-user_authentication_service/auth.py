@@ -61,6 +61,16 @@ class Auth:
         except Exception:
             return None
 
+    def get_reset_password_token(self, email: str) -> str:
+        """ If user exists creates token for passowrd reset returns token """
+        try:
+            user = self._db.find_user_by(email=email)
+            res_toke = _generate_uuid()
+            user.reset_token = res_toke
+            return res_toke
+        except Exception:
+            raise ValueError
+
 
 def _hash_password(password: str) -> bytes:
     """ salt & pepper the hash browns """
