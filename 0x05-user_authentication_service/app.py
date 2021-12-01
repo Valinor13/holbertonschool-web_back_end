@@ -41,25 +41,13 @@ def login():
     """
     pw = request.form.get('password')
     email = request.form.get('email')
-    if AUTH.valid_login(email, pw):
+    if email and AUTH.valid_login(email, pw):
         sesh_id = AUTH.create_session(email)
-        cookie(sesh_id)
-        return jsonify({'email': email, 'message': 'logged in'})
+        resp = jsonify({'email': email, 'message': 'logged in'})
+        resp.set_cookie('session_id', sesh_id)
+        return resp
     else:
         abort(401)
-
-
-@app.route('/cookie')
-def cookie(sesh_id: str):
-    """ makes a cookie in response """
-    if not request.cookies.get('session_id'):
-        res = make_response('Setting a cookie')
-        res.set_cookie('session_id', sesh_id)
-    else:
-        res = make_response(
-            'Value of cookie session_id is {}'.format(
-                request.cookies.get('session_id')))
-    return res
 
 
 if __name__ == "__main__":
