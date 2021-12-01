@@ -48,7 +48,10 @@ class Auth:
         """ return user based on session id """
         if not session_id or len(session_id) == 0:
             return None
-        return request.cookies.get('session_id')
+        try:
+            return self._db.find_user_by(session_id=session_id)
+        except Exception:
+            return None
 
 
 def _hash_password(password: str) -> bytes:
