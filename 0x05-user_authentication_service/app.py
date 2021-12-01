@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """ Appy flask navigator module """
-from flask import Flask, jsonify, request, abort, redirect, url_for
-from flask.helpers import url_for
+from flask import Flask, jsonify, request, abort, redirect
 from auth import Auth
 
 
