@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 
 @app.route('/', methods=['GET'], strict_slashes=False)
-def welcome_message() -> str:
+def home() -> str:
     """ GET home dir
     Return:
       - welcome message
@@ -62,7 +62,7 @@ def logout():
     if not user:
         abort(403)
     AUTH.destroy_session(user.id)
-    return redirect(url_for('welcome_message'))
+    return redirect(url_for('home'))
 
 
 if __name__ == "__main__":
