@@ -8,7 +8,7 @@ AUTH = Auth()
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET'], strict_slashes=False)
+@app.route('/', methods=['GET'])
 def index() -> str:
     """ GET home dir
     Return:
@@ -61,7 +61,7 @@ def logout():
     if not user:
         abort(403)
     AUTH.destroy_session(user.id)
-    return redirect()
+    return redirect('/')
 
 
 if __name__ == "__main__":
