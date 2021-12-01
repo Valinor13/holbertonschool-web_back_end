@@ -32,6 +32,7 @@ def users():
     except ValueError:
         return jsonify({'message': 'email already registered'}), 400
 
+
 @app.route('/sessions', methods=['POST'], strict_slashes=False)
 def login():
     """ POST sessions
@@ -47,6 +48,7 @@ def login():
     else:
         abort(401)
 
+
 @app.route('/cookie')
 def cookie(sesh_id: str):
     """ makes a cookie in response """
@@ -58,6 +60,7 @@ def cookie(sesh_id: str):
             'Value of cookie session_id is {}'.format(
                 request.cookies.get('session_id')))
     return res
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
