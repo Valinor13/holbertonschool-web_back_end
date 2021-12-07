@@ -39,27 +39,22 @@ class TestGetJson(unittest.TestCase):
 
 
 class TestMemoize(unittest.TestCase):
-    """ Test class
-    direct cause of pain and suffering """
-
+    """ This is a class that holds methods for testing the utils.memoize """
     def test_memoize(self):
-        """ Tests memoize method """
+        """ This method tests utils.memoize """
         class TestClass:
-            """ class """
-
+            """ This class holds a method of memoization """
             def a_method(self):
-                """ method  """
                 return 42
 
             @utils.memoize
             def a_property(self):
-                """ property """
                 return self.a_method()
-        with mock.patch.object(TestClass, "a_method") as mockMethod:
-            test_class = TestClass()
-            test_class.a_property
-            test_class.a_property
-            mockMethod.assert_called_once
+        with mock.patch.object(TestClass, 'a_method') as fn:
+            tc = TestClass()
+            tc.a_property
+            tc.a_property
+            fn.assert_called_once()
 
 
 if __name__ == '__main__':
