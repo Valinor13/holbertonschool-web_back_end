@@ -38,5 +38,29 @@ class TestGetJson(unittest.TestCase):
             self.assertEqual(utils.get_json(test_url), test_payload)
 
 
+class TestMemoize(unittest.TestCase):
+    """ Test class
+    direct cause of pain and suffering """
+
+    def test_memoize(self):
+        """ Tests memoize method """
+        class TestClass:
+            """ class """
+
+            def a_method(self):
+                """ method  """
+                return 42
+
+            @utils.memoize
+            def a_property(self):
+                """ property """
+                return self.a_method()
+        with mock.patch.object(TestClass, "a_method") as mockMethod:
+            test_class = TestClass()
+            test_class.a_property
+            test_class.a_property
+            mockMethod.assert_called_once
+
+
 if __name__ == '__main__':
     unittest.main()
