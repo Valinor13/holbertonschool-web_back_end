@@ -48,5 +48,16 @@ class TestGithubOrgClient(unittest.TestCase):
         self.assertEqual(tc.has_license(repo, license_key), expected)
 
 
+class TestIntegrationGithubOrgClient(unittest.TestCase):
+    """ this class tests external client integration """
+    @classmethod
+    def setUpClass(cls):
+        """ """
+
+    @classmethod
+    def tearDownClass(cls):
+        """ """
+
+
 if __name__ == '__main__':
     unittest.main()
