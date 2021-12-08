@@ -29,8 +29,14 @@ class TestGithubOrgClient(unittest.TestCase):
             self.assertEqual(tc._public_repos_url, 1)
 
     @mock.patch('client.get_json')
-    def test_public_repos(self):
+    def test_public_repos(self, org):
         """ tests if public repos exist with correct mock info """
+        with mock.patch('client.GithubOrgClient.public_repos',
+                        new_callable=mock.PropertyMock) as mocker:
+            tc = client.GithubOrgClient('org_name')
+            new_mock = mocker()
+            mocker.assert_called_once()
+            self.assertEqual(tc.public_repos, new_mock)
 
     @parameterized.expand([
         ({"license": {"key": "my_license"}}, "my_license", True),
