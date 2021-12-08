@@ -21,12 +21,25 @@ class TestGithubOrgClient(unittest.TestCase):
         self.assertEqual(tc.org, {'a': 1})
 
     @client.memoize
-    @mock.patch('client.GithubOrgClient.org',
-                mock.MagicMock(return_value={'a': 1}))
     def test_public_repos_url(self):
         """ test GithubOrgClient for consistent return """
+        with mock.patch('client.GithubOrgClient.org',
+                        mock.MagicMock(return_value={'a': 1})):
+            tc = client.GithubOrgClient('org_name')
+            self.assertEqual(tc._public_repos_url, 1)
+
+    @mock.patch('client.get_json', mock.MagicMock(return_value={'a': 1}))
+    def test_public_repos(self):
+        """ """
+
+    @parameterized.expand([
+        ({"license": {"key": "my_license"}}, "my_license", True),
+        ({"license": {"key": "other_license"}}, "my_license", False)
+    ])
+    def test_has_license(self, repo, license_key, expected):
+        """ """
         tc = client.GithubOrgClient('org_name')
-        self.assertEqual(tc._public_repos_url, 1)
+        self.assertEqual(tc.has_license(repo, license_key), expected)
 
 
 if __name__ == '__main__':
