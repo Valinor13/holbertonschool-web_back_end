@@ -28,16 +28,16 @@ class TestGithubOrgClient(unittest.TestCase):
             tc = client.GithubOrgClient('org_name')
             self.assertEqual(tc._public_repos_url, 1)
 
-    @mock.patch('client.get_json', mock.MagicMock(return_value={'a': 1}))
+    @mock.patch('client.get_json')
     def test_public_repos(self):
-        """ """
+        """ tests if public repos exist with correct mock info """
 
     @parameterized.expand([
         ({"license": {"key": "my_license"}}, "my_license", True),
         ({"license": {"key": "other_license"}}, "my_license", False)
     ])
     def test_has_license(self, repo, license_key, expected):
-        """ """
+        """ tests if the license exists in the repo """
         tc = client.GithubOrgClient('org_name')
         self.assertEqual(tc.has_license(repo, license_key), expected)
 
