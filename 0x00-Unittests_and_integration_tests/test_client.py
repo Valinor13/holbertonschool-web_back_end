@@ -8,18 +8,17 @@ from unittest import mock
 from parameterized import parameterized
 
 
-class TestGitHubOrgClient(unittest.TestCase):
+class TestGithubOrgClient(unittest.TestCase):
     """ This class tests the Github Client """
     @parameterized.expand([
         ('google'),
         ('abc')
     ])
-    @mock.patch('client.get_json',
-                mock.MagicMock(return_value={'key', 'value'}))
+    @mock.patch('client.get_json', mock.MagicMock(return_value={'a': 1}))
     def test_org(self, org):
         """ this tests the org """
         tc = client.GithubOrgClient(org)
-        self.assertEqual(tc.org, {'key', 'value'})
+        self.assertEqual(tc.org, {'a': 1})
 
 
 if __name__ == '__main__':
