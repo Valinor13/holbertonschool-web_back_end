@@ -20,6 +20,14 @@ class TestGithubOrgClient(unittest.TestCase):
         tc = client.GithubOrgClient(org)
         self.assertEqual(tc.org, {'a': 1})
 
+    @client.memoize
+    @mock.patch('client.GithubOrgClient.org',
+                mock.MagicMock(return_value={'a': 1}))
+    def test_public_repos_url(self):
+        """ test GithubOrgClient for consistent return """
+        tc = client.GithubOrgClient('org_name')
+        self.assertEqual(tc._public_repos_url, 1)
+
 
 if __name__ == '__main__':
     unittest.main()
