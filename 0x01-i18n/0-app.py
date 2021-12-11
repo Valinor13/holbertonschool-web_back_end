@@ -1,21 +1,9 @@
 #!/usr/bin/env python3
 """ This is the basic flask appy """
 
-from flask import Flask, request
-from flask_babel import Babel
+from flask import Flask
 from flask.templating import render_template
 app = Flask(__name__)
-app.config.from_object('app.Config.settings')
-babel = Babel(app)
-
-
-class Config:
-    LANGUAGES = ['en', 'fr']
-
-    @babel.localeselector
-    def get_locale(self):
-        """ returns the location for the g11n app """
-        return request.accept_languages.best_match(self.LANGUAGES)
 
 
 @app.route('/')
