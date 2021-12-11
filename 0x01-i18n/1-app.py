@@ -5,7 +5,7 @@ from flask import Flask, request
 from flask_babel import Babel
 from flask.templating import render_template
 app = Flask(__name__)
-app.config.from_object('app.Config.settings')
+app.config.from_object('app.config.settings')
 babel = Babel(app)
 
 
