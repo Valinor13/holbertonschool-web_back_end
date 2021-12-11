@@ -12,10 +12,11 @@ class Config:
     """ Config settings for babel app """
     LANGUAGES = ['en', 'fr']
 
-    @babel.localeselector
-    def get_locale(self):
-        """ returns the location for the g11n app """
-        return request.accept_languages.best_match(app.config(self.LANGUAGES))
+
+@babel.localeselector
+def get_locale():
+    """ returns the location for the g11n app """
+    return request.accept_languages.best_match(app.config(Config.LANGUAGES))
 
 
 app.config.from_object(Config)
