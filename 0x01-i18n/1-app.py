@@ -15,7 +15,12 @@ class Config:
     @babel.localeselector
     def get_locale(self):
         """ returns the location for the g11n app """
-        return request.accept_languages.best_match(self.LANGUAGES)
+        return request.accept_languages.best_match(app.config['LANGUAGES'])
+
+    @babel.timezoneselector
+    def get_timezone(self):
+        """ returns the timezone default = UTC """
+        return 'UTC'
 
 
 @app.route('/')
