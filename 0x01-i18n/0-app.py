@@ -9,4 +9,10 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     """ calls the index from templates """
-    return render_template('0-index.html')
+    return render_template('0-index.html',
+                           title='Welcome to Holberton',
+                           header='Hello world')
+
+
+if __name__ == "__main__":
+    app.run()
