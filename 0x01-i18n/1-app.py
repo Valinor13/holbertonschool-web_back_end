@@ -5,7 +5,6 @@ from flask import Flask, request
 from flask_babel import Babel
 from flask.templating import render_template
 app = Flask(__name__)
-app.config.from_object("Config")
 babel = Babel(app)
 
 
@@ -22,6 +21,9 @@ class Config:
     def get_timezone(self):
         """ returns the timezone default = UTC """
         return 'UTC'
+
+
+app.config.from_object("Config")
 
 
 @app.route('/')
