@@ -10,12 +10,13 @@ babel = Babel(app)
 
 
 class Config:
+    """ Config settings for babel app """
     LANGUAGES = ['en', 'fr']
 
     @babel.localeselector
     def get_locale(self):
         """ returns the location for the g11n app """
-        return request.accept_languages.best_match(self.LANGUAGES)
+        return request.accept_languages.best_match(self.LANGUAGES), 200
 
 
 @app.route('/')
