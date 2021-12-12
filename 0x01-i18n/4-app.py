@@ -15,6 +15,9 @@ class Config:
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
+app.config.from_object(Config)
+
+
 @babel.localeselector
 def get_locale():
     """ returns the location for the g11n app """
@@ -23,9 +26,6 @@ def get_locale():
         return locale
     t10s = [str(translation) for translation in babel.list_translations()]
     return request.accept_languages.best_match(t10s)
-
-
-app.config.from_object(Config)
 
 
 @app.route('/')
