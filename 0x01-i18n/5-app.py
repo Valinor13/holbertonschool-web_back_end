@@ -52,7 +52,7 @@ def before_request():
         g.user = user
         return render_template('5-index.html', logger=gettext('logged_in_as'))
     else:
-        return render_template('5-index.html', 
+        return render_template('5-index.html',
                                logger=gettext('not_logged_in'))
 
 
