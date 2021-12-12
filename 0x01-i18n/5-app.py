@@ -37,9 +37,11 @@ def get_locale():
 def get_user():
     """ gets a user from the browser input """
     login_id = request.args.get('login_as')
-    if not login_id or not users[login_id]:
+    if not login_id:
         return None
-    return users[login_id]
+    if not users[int(login_id)]:
+        return None
+    return users[int(login_id)]
 
 
 @app.before_request
@@ -50,7 +52,8 @@ def before_request():
         g.user = user
         return render_template('5-index.html', logger=gettext('logged_in_as'))
     else:
-        return render_template('5-index.html', logger=gettext('not_logged_in'))
+        return render_template('5-index.html', 
+                               logger=gettext('not_logged_in'))
 
 
 @app.route('/')
