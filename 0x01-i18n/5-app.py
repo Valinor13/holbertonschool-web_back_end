@@ -2,7 +2,8 @@
 """ This is the basic flask appy """
 
 from flask import Flask, request, g
-from flask_babel import Babel, gettext
+from flask_babel import Babel
+from flask_babel import gettext as _
 from flask.templating import render_template
 app = Flask(__name__)
 babel = Babel(app)
@@ -39,21 +40,24 @@ def get_user():
     login_id = request.args.get('login_as')
     if not login_id:
         return None
-    if not users[int(login_id)]:
+    try:
+        login_id = int(login_id)
+        if login_id < 1 or login_id > 4:
+            raise Exception
+    except Exception:
         return None
-    return users[int(login_id)]
+    return users[login_id]
 
 
 @app.before_request
 def before_request():
     """ assigns user before page loads """
-    user = get_user()
-    if user:
-        g.user = user
-        return render_template('5-index.html', logger=gettext('logged_in_as'))
+    usr = get_user()
+    if usr:
+        g.user = usr
+        return render_template('5-index.html', logger=_('logged_in_as'))
     else:
-        return render_template('5-index.html',
-                               logger=gettext('not_logged_in'))
+        return render_template('5-index.html', logger=_('not_logged_in'))
 
 
 @app.route('/')
