@@ -2,7 +2,7 @@
 """ This is the basic flask appy """
 
 from flask import Flask, request
-from flask_babel import Babel, gettext
+from flask_babel import Babel
 from flask.templating import render_template
 app = Flask(__name__)
 babel = Babel(app)
