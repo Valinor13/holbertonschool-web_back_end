@@ -4,6 +4,7 @@
 from flask import Flask, request
 from flask_babel import Babel
 from flask.templating import render_template
+from gettext import gettext as _
 app = Flask(__name__)
 babel = Babel(app)
 
@@ -27,7 +28,7 @@ app.config.from_object(Config)
 @app.route('/')
 def index():
     """ calls the index from templates """
-    return render_template('3-index.html')
+    return render_template('3-index.html', home_title=_('home_title'), home_header=_('home_header'))
 
 
 if __name__ == "__main__":
