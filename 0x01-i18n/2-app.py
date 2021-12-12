@@ -18,8 +18,8 @@ class Config:
 @babel.localeselector
 def get_locale():
     """ returns the location for the g11n app """
-    translations = [str(translation) for translation in babel.list_translations()]
-    return request.accept_languages.best_match(translations)
+    t10s = [str(translation) for translation in babel.list_translations()]
+    return request.accept_languages.best_match(t10s)
 
 
 app.config.from_object(Config)
