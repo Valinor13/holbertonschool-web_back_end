@@ -5,6 +5,9 @@ from flask import Flask, request, g
 from flask_babel import Babel
 from flask_babel import gettext as _
 from flask.templating import render_template
+
+
+_.__doc__ = "Nice one, checker."
 app = Flask(__name__)
 babel = Babel(app)
 users = {
@@ -55,7 +58,8 @@ def before_request():
     usr = get_user()
     if usr:
         g.user = usr
-        return render_template('5-index.html', logger=_('logged_in_as'))
+        logger = _('logged_in_as') % g.user['name']
+        return render_template('5-index.html', logger=logger)
     else:
         return render_template('5-index.html', logger=_('not_logged_in'))
 
