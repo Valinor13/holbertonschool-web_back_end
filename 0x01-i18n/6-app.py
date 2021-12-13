@@ -31,15 +31,15 @@ app.config.from_object(Config)
 @babel.localeselector
 def get_locale():
     """ returns the location for the g11n app """
+    locale = request.args.get('locale')
+    if locale and locale in app.config['LANGUAGES']:
+        return locale
     try:
         locale = g.user['locale']
         if locale in app.config['LANGUAGES']:
             return locale
     except Exception:
         locale = None
-    locale = request.args.get('locale')
-    if locale and locale in app.config['LANGUAGES']:
-        return locale
     t10s = [str(translation) for translation in babel.list_translations()]
     return request.accept_languages.best_match(t10s)
 
