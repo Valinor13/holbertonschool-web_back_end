@@ -5,6 +5,7 @@ import redis
 import uuid
 import functools
 from typing import Union, Callable
+from codecs import decode
 
 
 def count_calls(method: Callable) -> Callable:
@@ -29,6 +30,18 @@ def call_history(method: Callable) -> Callable:
         self._redis.rpush('{}:outputs'.format(key), str(data))
         return data
     return count_wrapper
+
+
+def replay(method: Callable) -> Callable:
+    """ turn the record back """
+    r = redis.Redis()
+    key = method.__qualname__
+    i_list = r.lrange(f'{key}:inputs', 0, -1)
+    o_list = r.lrange(f'{key}:outputs', 0, -1)
+    print('{} was called {} times:'.format(key, len(i_list)))
+    zip_list = zip(i_list, o_list)
+    for i, o in zip_list:
+        print('{}(*({}) -> {}'.format(key, decode(i, utf-8), decode(o, utf-8)))
 
 
 class Cache:
