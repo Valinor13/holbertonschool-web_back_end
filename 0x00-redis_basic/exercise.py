@@ -14,7 +14,7 @@ def count_calls(method: Callable) -> Callable:
     def count_wrapper(self, *args, **kwargs) -> int:
         """ the callable wrapper for count """
         self._redis.incr(key)
-        return method
+        return method(self, *args, **kwargs)
     return count_wrapper
 
 
@@ -59,11 +59,11 @@ class Cache:
             return '(nil)'
 
 
-    def get_str(self, key: str) -> str:
-        """ converts data to str """
-        return self.get(key, str)
+def get_str(key: str) -> str:
+    """ converts data to str """
+    return Cache.get(key, str)
 
 
-    def get_int(self, key: str) -> int:
-        """ converts data to int """
-        return self.get(key, int)
+def get_int(key: str) -> int:
+    """ converts data to int """
+    return Cache.get(key, int)
