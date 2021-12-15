@@ -40,7 +40,7 @@ def replay(method: Callable) -> Callable:
     print('{} was called {} times:'.format(key, len(i_list)))
     zip_list = zip(i_list, o_list)
     for i, o in zip_list:
-        print('{}(*{}) -> {}'.format(key, i.decode(utf-8), o.decode(utf-8)))
+        print('{}(*{}) -> {}'.format(key, i.decode('utf-8'), o.decode('utf-8')))
 
 
 class Cache:
