@@ -24,9 +24,9 @@ def call_history(method: Callable) -> Callable:
     @functools.wraps(method)
     def count_wrapper(self, *args, **kwargs) -> int:
         """ the callable wrapper for history """
-        self._redis.rpush(f'{key}:inputs', str(args))
+        self._redis.rpush('{}:inputs'.format(key), str(args))
         data = method(self, *args, **kwargs)
-        self._redis.rpush(f'{key}:outputs', str(data))
+        self._redis.rpush('{}:outputs'.format(key), str(data))
         return data
     return count_wrapper
 
@@ -59,11 +59,11 @@ class Cache:
             return '(nil)'
 
 
-def get_str(key: str) -> str:
-    """ converts data to str """
-    return Cache.get(key, str)
+    def get_str(self, key: str) -> str:
+        """ converts data to str """
+        return self.get(key, str)
 
 
-def get_int(key: str) -> int:
-    """ converts data to int """
-    return Cache.get(key, int)
+    def get_int(self, key: str) -> int:
+        """ converts data to int """
+        return self.get(key, int)
