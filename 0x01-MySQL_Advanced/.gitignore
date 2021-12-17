@@ -1,3 +1,5 @@
 drop_table_template.sql
 metal_bands.sql
 tmp_res
+4-main.sql
+4-init.sql
