@@ -6,5 +6,5 @@ FROM students AS stud
 WHERE stud.score < 80
 AND (
     stud.last_meeting IS NULL OR
-    DATEDIFF(NOW(), last_meeting) > 30
+    DATEDIFF(NOW(), stud.last_meeting) > 30
 )
