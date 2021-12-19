@@ -2,8 +2,7 @@
 -- because Batch 14a is the best!
 DELIMITER //
 
-CREATE PROCEDURE AddBonus
-(
+CREATE PROCEDURE AddBonus (
     IN user_id INT, IN project_name VARCHAR(255), IN score INT
 )
 BEGIN
