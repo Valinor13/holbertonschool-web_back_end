@@ -1,2 +1,2 @@
 // Create or use my_db
-new Mongo().getDB("my_db");
+use my_db
