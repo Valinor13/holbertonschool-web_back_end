@@ -1,2 +1,2 @@
 // Create or use my_db
-my_db = new Mongo().getDB("EtudiantDB");
+new Mongo().getDB("my_db");
