@@ -6,4 +6,7 @@ import pymongo
 
 def insert_school(mongo_collection, **kwargs):
     """ insert new record into collection """
-    return mongo_collection.insert_one(kwargs)
+    new_doc = {}
+    for k, v in kwargs.items():
+        new_doc[k] = v
+    return mongo_collection.insert_one(new_doc)
