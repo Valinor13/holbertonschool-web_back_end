@@ -1,10 +1,12 @@
-const process = require('process');
-
-process.stdout.write('Welcome to Holberton School, what is your name?'), (name) => {
-  console.log(`Your name is: ${name}!`);
-  readline.close();
+const readline = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout,
 });
 
-process.on('SIGINT', () => {
+readline.question('Welcome to Holberton School, what is your name?\n', (name) => {
+  console.log(`Your name is: ${name}!`);
+});
+
+process.on('beforeExit', () => {
   console.log('This important software is now closing');
 });
