@@ -5,7 +5,7 @@ function countStudents(path) {
     const fieldsList = [];
     const studentsByField = [];
     const file = fs.readFileSync(path, { encoding: 'utf8' });
-    const studentList = file.split('\r\n');
+    const studentList = file.split('\n');
     studentList.shift();
     const filteredStudents = studentList.filter((student) => student !== '');
     console.log(`Number of students: ${filteredStudents.length}`);
