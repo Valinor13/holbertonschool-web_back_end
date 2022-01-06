@@ -10,6 +10,7 @@ async function countStudents(path) {
     studentList.shift();
     studentList = studentList.filter((student) => student !== '');
     console.log(`Number of students: ${studentList.length}`);
+    returnList.push(`Number of students: ${studentList.length}`);
     studentList.forEach((student) => {
       const field = student.split(',');
       fieldsList.push(field[3]);
