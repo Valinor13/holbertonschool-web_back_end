@@ -1,5 +1,6 @@
+const fs = require('fs').promises;
+
 async function countStudents(path) {
-  const fs = require('fs').promises;
   try {
     const fieldsList = [];
     const studentsByField = [];
