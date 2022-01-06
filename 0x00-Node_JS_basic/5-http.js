@@ -8,11 +8,15 @@ const app = http.createServer(async (req, res) => {
     res.end();
   }
   if (req.url === '/students') {
-    const studentRes = await countStudents(process.argv[2]);
-    res.write('This is the list of our students');
-    studentRes.forEach((element) => {
-      res.write(element);
-    });
+    try {
+      const studentRes = await countStudents(process.argv[2]);
+      res.write('This is the list of our students');
+      studentRes.forEach((element) => {
+        res.write(element);
+      });
+    } catch (error) {
+      res.write(error);
+    }
     res.end();
   }
 });
