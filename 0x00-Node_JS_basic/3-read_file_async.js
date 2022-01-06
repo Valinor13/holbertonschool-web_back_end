@@ -6,7 +6,7 @@ async function countStudents(path) {
     const studentsByField = [];
     const returnList = [];
     const file = await fs.readFile(path, { encoding: 'utf8' });
-    let studentList = file.split('\r\n');
+    let studentList = file.split('\n');
     studentList.shift();
     studentList = studentList.filter((student) => student !== '');
     console.log(`Number of students: ${studentList.length}`);
