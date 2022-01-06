@@ -3,4 +3,4 @@ database.csv
 .eslintrc.js
 node_modules
 *main.js
-test\*
+test.js
