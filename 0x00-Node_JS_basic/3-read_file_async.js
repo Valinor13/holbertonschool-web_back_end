@@ -4,6 +4,7 @@ async function countStudents(path) {
   try {
     const fieldsList = [];
     const studentsByField = [];
+    const returnList = [];
     const file = await fs.readFile(path, { encoding: 'utf8' });
     let studentList = file.split('\r\n');
     studentList.shift();
@@ -28,9 +29,10 @@ async function countStudents(path) {
     let j = 0;
     fieldSet.forEach((field) => {
       console.log(`Number of students in ${field}: ${studentsByField[j].length}. List: ${studentsByField[j].join(', ')}`);
+      returnList.push(`Number of students in ${field}: ${studentsByField[j].length}. List: ${studentsByField[j].join(', ')}`);
       j += 1;
     });
-    return file;
+    return returnList;
   } catch (error) {
     throw new Error('Cannot load the database');
   }
