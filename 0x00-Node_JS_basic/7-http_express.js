@@ -9,12 +9,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/students', async (req, res) => {
+  res.write('This is the list of our students\n');
   try {
     if (process.argv[2] === '') {
       throw new Error();
     }
     const studentRes = await countStudents(process.argv[2]);
-    res.write('This is the list of our students\n');
     studentRes.forEach((element) => {
       res.write(element.concat('\n'));
     });
