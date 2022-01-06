@@ -1,8 +1,10 @@
+const fs = require('fs');
+
 function countStudents(path) {
   try {
     const fieldsList = [];
     const studentsByField = [];
-    const file = require('fs').readFileSync(path, { encoding: 'utf8' });
+    const file = fs.readFileSync(path, { encoding: 'utf8' });
     const studentList = file.split('\r\n');
     studentList.shift();
     console.log(`Number of students: ${studentList.length}`);
