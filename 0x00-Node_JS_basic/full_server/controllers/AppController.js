@@ -1,5 +1,7 @@
 class AppController {
-  static getHomepage(request, response) {
-    return 'Hello Holberton School!', 200;
+  static getHomepage() {
+    return 'Hello Holberton School!';
   }
 }
+
+module.exports = AppController;
