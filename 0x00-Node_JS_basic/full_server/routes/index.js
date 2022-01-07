@@ -1,4 +1,6 @@
 import express from 'express';
+import AppController from '../controllers/AppController';
+import StudentsController from '../controllers/StudentsController';
 
 const router = express.Router();
 
@@ -7,11 +9,11 @@ router.get('/', (req, res) => {
 })
 
 router.get('/students', (req, res) => {
-  res.render(StudentController.getAllStudents());
+  res.render(StudentsController.getAllStudents());
 })
 
 router.post('/students/:major', (req, res) => {
-  res.render(StudentController.getAllStudentsByMajor(major));
+  res.render(StudentsController.getAllStudentsByMajor(major));
 })
 
 module.exports = router;
