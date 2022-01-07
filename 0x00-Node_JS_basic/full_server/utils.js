@@ -1,9 +1,7 @@
 import fs from 'fs';
-import { builtinModules } from 'module';
 
 async function readDatabase(path) {
   try {
-    const file = await fs.readFile(path, { encoding: 'utf8' });
     const fieldsList = [];
     const studentsByField = [];
     const returnList = [];
