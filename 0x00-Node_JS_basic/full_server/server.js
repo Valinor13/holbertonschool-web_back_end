@@ -1,5 +1,5 @@
-import express from 'express';
-import userRouter from './routes/index';
+const express = require('express');
+const userRouter = require('./routes/index');
 
 app = express();
 port = 1245;

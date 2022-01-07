@@ -1,4 +1,4 @@
-import readDatabase from 'utils';
+const readDatabase = require('../utils');
 
 class StudentsController {
   async static getAllStudents(request, response) {
