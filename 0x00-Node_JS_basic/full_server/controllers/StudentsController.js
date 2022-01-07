@@ -12,14 +12,13 @@ class StudentsController {
         res.write(element.concat('\n'));
       });
     } catch (error) {
-      res.write('Cannot load the database');
-      res.status(500);
+      res.status(404).send(err.message);
     }
     res.end();
   }
 
   async static getAllStudentsByMajor(request, response) {
-    return 'Major parameter must be CS or SWE', 500;
+    return response.status(500).send('Major parameter must be CS or SWE');
   }
 }
 
