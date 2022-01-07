@@ -22,3 +22,5 @@ class StudentController {
     return 'Major parameter must be CS or SWE', 500;
   }
 }
+
+module.exports = StudentController;
