@@ -36,7 +36,7 @@ async function readDatabase(path) {
     });
     return returnList;
   } catch (err) {
-    throw new Error(err)
+    throw new Error(err);
   }
 }
 
