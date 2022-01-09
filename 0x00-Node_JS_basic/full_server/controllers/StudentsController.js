@@ -4,7 +4,7 @@ class StudentsController {
   async static getAllStudents(request, response) {
     response.write('This is the list of our students\n');
     try {
-      if (process.argv[2] === '') {
+      if (!process.argv[2]) {
         throw new Error();
       }
       const studentRes = await readDatabase(process.argv[2]);
