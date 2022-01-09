@@ -26,10 +26,10 @@ async function readDatabase(path) {
       });
       i += 1;
     });
-    let j = 0;
+    i = 0;
     fieldSet.forEach((field) => {
-      returnDict[field] = studentsByField[j];
-      j += 1;
+      returnDict[field] = studentsByField[i];
+      i += 1;
     });
     return returnDict;
   } catch (err) {
