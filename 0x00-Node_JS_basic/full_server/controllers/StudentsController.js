@@ -2,23 +2,23 @@ const readDatabase = require('../utils');
 
 class StudentsController {
   async static getAllStudents(request, response) {
-    response.write('This is the list of our students');
+    response.write('This is the list of our students\n');
     try {
       if (process.argv[2] === '') {
         throw new Error();
       }
       const studentRes = await readDatabase(process.argv[2]);
-      studentRes.forEach((element) => {
-        res.write(element.concat('\n'));
-      });
+      for (const [key, value] of Object.entries(studentRes)) {
+        response.write(`Number of students in ${key}: ${value.length}. List: ${value}\n`);
+      }
     } catch (error) {
-      res.status(404).send(err.message);
+      response.status(500).send('Cannot load the database');
     }
-    res.end();
+    response.end();
   }
 
-  async static getAllStudentsByMajor(request, response) {
-    return response.status(500).send('Major parameter must be CS or SWE');
+  static getAllStudentsByMajor(request, response) {
+   response.status(500).send('Major parameter must be CS or SWE');
   }
 }
 
