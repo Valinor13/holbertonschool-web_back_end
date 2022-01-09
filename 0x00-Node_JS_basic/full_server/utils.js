@@ -33,7 +33,7 @@ async function readDatabase(path) {
     });
     return returnDict;
   } catch (err) {
-    reject(new Error(err));
+    throw new Error(err);
   }
 }
 
