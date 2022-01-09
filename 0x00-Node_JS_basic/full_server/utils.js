@@ -4,13 +4,11 @@ async function readDatabase(path) {
   try {
     const fieldsList = [];
     const studentsByField = [];
-    const returnList = [];
+    const returnDict = {};
     const file = await fs.readFile(path, { encoding: 'utf8' });
     let studentList = file.split('\n');
     studentList.shift();
     studentList = studentList.filter((student) => student !== '');
-    console.log(`Number of students: ${studentList.length}`);
-    returnList.push(`Number of students: ${studentList.length}`);
     studentList.forEach((student) => {
       const field = student.split(',');
       fieldsList.push(field[3]);
@@ -30,13 +28,12 @@ async function readDatabase(path) {
     });
     let j = 0;
     fieldSet.forEach((field) => {
-      console.log(`Number of students in ${field}: ${studentsByField[j].length}. List: ${studentsByField[j].join(', ')}`);
-      returnList.push(`Number of students in ${field}: ${studentsByField[j].length}. List: ${studentsByField[j].join(', ')}`);
+      returnDict[field] = studentsByField[j];
       j += 1;
     });
-    return returnList;
+    return returnDict;
   } catch (err) {
-    throw new Error(err);
+    reject(new Error(err));
   }
 }
 
