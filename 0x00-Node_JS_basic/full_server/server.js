@@ -4,7 +4,7 @@ const userRouter = require('./routes/index');
 app = express();
 port = 1245;
 
-app.use('', userRouter);
+app.use(userRouter);
 
 app.listen(port, (err) => {
   if (err) {
