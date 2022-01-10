@@ -1,0 +1,17 @@
+{
+  "name": "0x01-unittests_in_js",
+  "version": "1.0.0",
+  "description": "This directory will cover Mocha unittests for node JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.1.3",
+    "sinon": "^12.0.1"
+  }
+}
