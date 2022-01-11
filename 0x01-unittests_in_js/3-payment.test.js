@@ -12,6 +12,6 @@ describe('sendPaymentRequestToApi', function() {
     it('Spy the use of callback function', function() {
         const spy = sinon.spy(Utils.calculateNumber, 'utils function');
         sendPaymentRequestToApi(100, 20);
-        sinon.assert.calledOnce(spy);
+        expect(spy.called()).to.be.true;
     });
 });
