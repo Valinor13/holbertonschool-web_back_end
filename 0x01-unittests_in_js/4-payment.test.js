@@ -11,8 +11,9 @@ describe('sendPaymentRequestToApi', function() {
     });
     it('Stub the use of object function', function() {
         const stub = sinon.stub(Utils, 'calculateNumber');
-        stub.withArgs(100, 20).returns(10);
-        expect(sendPaymentRequestToApi(100, 20)).to.equal(10);
-        spy.restore();
+        const spy = sinon.spy(sendPaymentRequestToApi());
+        stub.withArgs('SUM', 100, 20).returns(10);
+        expect(spy(100, 20)).to.equal(10);
+        stub.restore();
     });
 });
