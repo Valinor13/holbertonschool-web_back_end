@@ -24,7 +24,7 @@ describe('calculateNumber DIVIDE', function() {
 
 describe('calculateNumber divideZero', function() {
     it('should determine if calculateNumber returns the correct error', function() {
-        const num = calculateNumber(5, 0, 'DIVIDE');
+        const num = calculateNumber('DIVIDE', 5, 0);
         chai.expect(num).to.equal('Error', '5.0 / 0.0 = Error');
     })
 })
