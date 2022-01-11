@@ -10,8 +10,9 @@ describe('sendPaymentRequestToApi', function() {
         expect(sendPaymentRequestToApi(100, 20)).to.equal(120);
     });
     it('Spy the use of callback function', function() {
-        const spy = sinon.spy(Utils.calculateNumber);
+        const spy = sinon.spy(Utils, 'calculateNumber');
         sendPaymentRequestToApi(100, 20);
-        expect(spy.called).to.be.false;
+        expect(spy.called).to.be.true;
+        spy.restore();
     });
 });
