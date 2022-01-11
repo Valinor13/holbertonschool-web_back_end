@@ -1,6 +1,6 @@
 const chai = require('chai');
 const sinon = require('sinon');
-const sendPaymentRequestToApi = require('./3-payment');
+const sendPaymentRequestToApi = require('./4-payment');
 const Utils = require('./utils');
 
 const expect = chai.expect;
@@ -9,10 +9,10 @@ describe('sendPaymentRequestToApi', function() {
     it('Test to use function', function() {
         expect(sendPaymentRequestToApi(100, 20)).to.equal(120);
     });
-    it('Spy the use of callback function', function() {
-        const spy = sinon.spy(Utils, 'calculateNumber');
-        sendPaymentRequestToApi(100, 20);
-        expect(spy.called).to.be.true;
+    it('Stub the use of object function', function() {
+        const stub = sinon.stub(Utils, 'calculateNumber');
+        stub.withArgs(100, 20).returns(10);
+        expect(sendPaymentRequestToApi(100, 20)).to.equal(10);
         spy.restore();
     });
 });
