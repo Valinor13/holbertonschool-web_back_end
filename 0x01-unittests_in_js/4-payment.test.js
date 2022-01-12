@@ -6,9 +6,6 @@ const Utils = require('./utils');
 const expect = chai.expect;
 
 describe('sendPaymentRequestToApi', function() {
-    it('Test to use function', function() {
-        expect(sendPaymentRequestToApi(100, 20)).to.equal(120);
-    });
     it('Stub the use of object function', function() {
         const stub = sinon.stub(Utils, 'calculateNumber');
         const spy = sinon.spy(console, 'log');
