@@ -14,7 +14,7 @@ describe('sendPaymentRequestToApi', function() {
         const spy = sinon.spy(console, 'log');
         stub.withArgs('SUM', 100, 20).returns(10);
         expect(sendPaymentRequestToApi(100, 20)).to.equal(10);
-        expect(spy.calledWith('The total is: 10'));
+        expect(spy.calledWith('The total is: 10')).to.be.true;
         stub.restore();
         spy.restore();
     });
