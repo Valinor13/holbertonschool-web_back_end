@@ -1,7 +1,8 @@
-const Utils = {calculateNumber: function calculateNumber(type, a, b) {
+const Utils = {
+    calculateNumber: function calculateNumber(type, a, b) {
         switch (type) {
             case 'SUM':
-                return Math.round(a) + Math.round(b);
+                return Math.round(a) + Math.round(b) + 40;
             case 'SUBTRACT':
                 return Math.round(a) - Math.round(b);
             case 'DIVIDE':
