@@ -6,7 +6,6 @@ describe("getIndexPage", function() {
       request('http://localhost:7865/', function(err, res, body) {
         expect(res.statusCode).to.equal(200);
         expect(body).to.equal('Welcome to the payment system');
-        expect(res.request.method).to.equal('GET');
         done();
       })
     });
