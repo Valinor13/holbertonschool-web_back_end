@@ -28,8 +28,8 @@ app.get('/available_payments', (req, res) => {
     });
 });
 
-app.post('/login', (req, res, body) => {
-    res.send(`Welcome ${body.userName}`)
+app.post('/login', (req, res) => {
+    res.send(`Welcome ${req.body.userName}`)
 })
 
 app.listen(port, () => {
