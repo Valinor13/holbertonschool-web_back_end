@@ -1,14 +1,14 @@
 const app = require('./api');
 const sinon = require('sinon');
-const request = require('chai').request;
+const expect = require('chai').expect;
+const request = require('request');
 
 describe("getIndexPage", function() {
     it("should return index page", function(done) {
-      chai.request(app).get('/')
-      .end((err, response) => {
-          response.should.have.status(200);
-          response.body.should.be.eq('Welcome to the payment system')
-          done();
-      });
+      request('http://localhost:7865', function(err, res, body) {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body).to.equal('Welcome to the payment system');
+        done();
+      })
     });
 });
