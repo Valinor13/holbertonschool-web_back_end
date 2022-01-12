@@ -8,9 +8,15 @@ app.get('/', (req, res) => {
 });
 
 app.get('/cart/:id', (req, res) => {
-    if (typeof req.params.id === 'number') {
+    try {
+        Number(req.params.id);
+        if (isNaN(req.params.id)) {
+            throw new Error;
+        }
         res.send(`Payment methods for cart ${req.params.id}`);
-    };
+    } catch (err) {
+        res.sendStatus(404);
+    }
 });
 
 app.listen(port, () => {
