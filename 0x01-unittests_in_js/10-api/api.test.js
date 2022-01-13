@@ -28,3 +28,30 @@ describe('getCartPage', function() {
     });
   })
 });
+
+describe('getAvailablePaymentsPage', () => {
+  it('returns the right data object', (done) => {
+    request('http://localhost:7865/available_payments', (err, res, body) => {
+      expect(JSON.parse(body)).to.deep.equal({
+        payment_methods: {
+          credit_cards: true,
+          paypal: false
+        }
+      });
+      done();
+    });
+  });
+});
+
+describe('postLoginPage', () => {
+  it('Returns the right message', function (done) {
+    request.post('http://localhost:7865/login', {
+      json: {
+        userName: 'Valinor',
+      }
+    }, (err, res, body) => {
+      expect(body).to.equal(`Welcome Valinor`);
+      done();
+    });
+  });
+});
