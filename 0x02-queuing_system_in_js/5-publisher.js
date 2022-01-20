@@ -2,13 +2,13 @@ const redis = require('redis');
 
 const pub = redis.createClient();
 pub.on('error', (err) => console.log('Redis client not connected to the server:', err));
-pub.on('ready', () => console.log('Redis client connected to the server'));
+pub.on('connect', () => console.log('Redis client connected to the server'));
 
 function publishMessage(message, time) {
   async () => {
     await sleep(time);
   }
-  console.log('About to send MESSAGE');
+  console.log(`About to send ${messsage}`);
   pub.publish('holberton school channel', message);
 }
 
