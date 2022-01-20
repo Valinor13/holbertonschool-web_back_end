@@ -47,9 +47,9 @@ const jobs = [
   }
 ];
 
-const q = kue.createQueue();
+const que = kue.createQueue();
 jobs.forEach(data => {
-  let job = q.create('push_notification_code_2', data).save((err) => {
+  let job = que.create('push_notification_code_2', data).save((err) => {
     if (!err) {
       console.log(`Notification job created: ${job.id}`);
     }
