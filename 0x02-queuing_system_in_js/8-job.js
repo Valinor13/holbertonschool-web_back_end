@@ -1,5 +1,5 @@
 function createPushNotificationsJobs(jobs, queue) {
-  if (Array.isArray(jobs) {
+  if (Array.isArray(jobs)) {
     jobs.forEach(data => {
       let job = queue.create('push_notification_code_3', data).save((err) => {
         if (!err) {
@@ -14,5 +14,5 @@ function createPushNotificationsJobs(jobs, queue) {
         console.log(`Notification job #${job.id} failed: ${err}`)
       });
     });
-  };
+  }
 };
