@@ -8,5 +8,4 @@ function sendNotification(phoneNumber, message) {
 
 que.process('push_notification_code', (job) => {
     sendNotification(job.data.phoneNumber, job.data.message);
-    done();
 });
