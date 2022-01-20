@@ -1,6 +1,6 @@
 const kue = require('kue')
 
-que = kue.createQueue();
+const que = kue.createQueue();
 const data = {
   phoneNumber: String,
   message: String,
