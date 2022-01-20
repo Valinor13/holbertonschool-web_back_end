@@ -6,7 +6,7 @@ pub.on('connect', () => console.log('Redis client connected to the server'));
 
 function publishMessage(message, time) {
     pub.publish('holberton school channel', message, async () => {
-      await sleep(time);
+      await new Promise(resolve => setTimeout(resolve, time));
       console.log(`About to send ${message}`);
     });
 }
