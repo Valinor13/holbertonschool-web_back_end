@@ -8,7 +8,7 @@ function publishMessage(message, time) {
   async () => {
     await sleep(time);
   }
-  console.log(`About to send ${messsage}`);
+  console.log(`About to send ${message}`);
   pub.publish('holberton school channel', message);
 }
 
