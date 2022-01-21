@@ -62,6 +62,7 @@ async function getCurrentReservedStockById(itemId) {
     return { status: 'Product not found' };
   } else {
     await client.get(item.stock, (err, data) => {
+      console.log(data);
       return data;
     });
   }
