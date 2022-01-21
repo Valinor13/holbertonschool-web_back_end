@@ -4,8 +4,6 @@ function createPushNotificationsJobs(jobs, queue) {
       let job = queue.create('push_notification_code_3', data).save((err) => {
         if (!err) {
           console.log(`Notification job created: #${job.id}`);
-        } else {
-          throw new Error('Jobs is not an array');
         }
       });
       job.on('complete', () => {
@@ -16,6 +14,8 @@ function createPushNotificationsJobs(jobs, queue) {
         console.log(`Notification job #${job.id} failed: ${err}`)
       });
     });
+  } else {
+    throw new Error('Jobs is not an array');
   }
 };
 
