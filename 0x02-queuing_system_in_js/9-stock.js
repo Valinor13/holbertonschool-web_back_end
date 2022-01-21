@@ -37,7 +37,8 @@ const listProducts = [
 ];
 
 function getItemById(id) {
-  return listProducts.find(x => x.id === id);
+  console.log(listProducts.find(x => x.id === id));
+  return undefined;
 };
 
 function reserveStockById(itemId, stock) {
