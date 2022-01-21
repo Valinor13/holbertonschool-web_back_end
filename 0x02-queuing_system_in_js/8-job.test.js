@@ -1,6 +1,6 @@
 const kue = require('kue');
 const expect = require('chai').expect;
-import createPushNotificationsJobs from './8-job';
+const createPushNotificationsJobs = require('./8-job');
 
 const que = kue.createQueue();
 const dataList = [
