@@ -36,6 +36,10 @@ let listProducts = [
   },
 ];
 
+listProducts.forEach(item => {
+  client.hmset(item.id, 'id', item.id, 'name', item.name, 'price', item.price, 'stock', item.stock);
+});
+
 function getItemById(id) {
   return listProducts.find(item => item.id.toString() === id);
 };
@@ -45,11 +49,12 @@ function reserveStockById(itemId, stock) {
   if (item === undefined) {
     return 0;
   } else {
-    const newStock = (item.stock - stock);
+    const newStock = (client.hget(itemId, 'stock', (err, stock) => stock));
+    console.log(newStock);
     if (newStock < 1) {
       return -1;
     } else {
-      client.set(item.stock, newStock, redis.print);
+      client.hset(itemId, 'stock', newStock);
       return 1;
     }
   }
