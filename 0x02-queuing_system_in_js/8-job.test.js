@@ -20,7 +20,7 @@ describe('functionality that deals with kue', () => {
     after(() => que.testMode.exit());
     
     it('enques a job validating correct data', () => {
-        createPushNotificationsJobs(dataList, que);
+        createPushNotificationsJobs(dataList, que.testMode);
         expect(que.testMode.jobs.length).to.equal(2);
         expect(que.testMode.jobs[0].type).to.equal('push_notification_code_3');
         expect(que.testMode.jobs[0].data).to.eql({
