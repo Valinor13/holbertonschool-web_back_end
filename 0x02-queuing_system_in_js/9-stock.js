@@ -37,8 +37,7 @@ const listProducts = [
 ];
 
 function getItemById(id) {
-  console.log(listProducts.find(x => x.id === id));
-  return undefined;
+  return listProducts.find(item => item.id === id.toString());
 };
 
 function reserveStockById(itemId, stock) {
