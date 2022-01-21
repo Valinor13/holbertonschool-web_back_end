@@ -52,7 +52,7 @@ function reserveStockById(itemId, stock) {
     let newStock;
     client.hget(itemId, 'stock', (err, stock) => {
       console.log(stock);
-      newStock = stock
+      newStock = stock;
     });
     if (newStock < 1) {
       return -1;
