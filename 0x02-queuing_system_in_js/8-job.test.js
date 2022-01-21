@@ -1,5 +1,4 @@
 const expect = require('chai').expect;
-const createPushNotificationsJobs = require('./8-job');
 const kue = require('kue');
 
 const que = kue.createQueue();
@@ -10,6 +9,7 @@ describe('functionality that deals with kue', () => {
     after(() => que.testMode.exit());
     
     it('enques a job validating correct data', () => {
+        const createPushNotificationsJobs = require('./8-job');
         const list = [
             {
                 phoneNumber: '4153518780',
