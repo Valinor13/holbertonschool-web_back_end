@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 const port = 1245;
 
-const listProducts = [
+let listProducts = [
   {
     id: 1,
     name: 'Suitcase 250',
@@ -50,6 +50,7 @@ function reserveStockById(itemId, stock) {
       return -1;
     } else {
       client.set(item.stock, newStock, redis.print);
+      item.stock = newStock;
       return 1;
     }
   }
@@ -60,7 +61,7 @@ async function getCurrentReservedStockById(itemId) {
   if (item === undefined) {
     return { status: 'Product not found' };
   } else {
-    await client.get(item.stock, (err, data) => (data));
+    return await client.get(item.stock, (err, data) => (data));
   }
 };
 
