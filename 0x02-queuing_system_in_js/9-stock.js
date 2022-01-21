@@ -37,7 +37,7 @@ let listProducts = [
 ];
 
 listProducts.forEach(item => {
-  client.hmset(item.id.toString(), 'id', item.id, 'name', item.name, 'price', item.price, 'stock', item.stock);
+  client.hmset('id', item.id, 'name', item.name, 'price', item.price, 'stock', item.stock);
 });
 
 function getItemById(id) {
