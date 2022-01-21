@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const app = require('./8-job');
+const createPushNotificationsJobs = require('./8-job');
 const kue = require('kue');
 
 const que = kue.createQueue();
@@ -20,7 +20,7 @@ describe('functionality that deals with kue', () => {
                 message: 'This is test job 2'
             }
         ];
-        app(list, que);
+        createPushNotificationsJobs(list, que);
         expect(que.testMode.jobs.length).to.equal(2);
         expect(que.testMode.jobs[0].type).to.equal('push_notification_code_3');
         expect(que.testMode.jobs[0].data).to.eql({
