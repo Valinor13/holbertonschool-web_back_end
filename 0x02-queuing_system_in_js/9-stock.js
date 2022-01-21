@@ -49,7 +49,7 @@ function reserveStockById(itemId, stock) {
   if (item === undefined) {
     return 0;
   } else {
-    const newStock;
+    let newStock;
     client.hget(itemId, 'stock', (err, stock) => newStock = stock);
     if (newStock < 1) {
       return -1;
