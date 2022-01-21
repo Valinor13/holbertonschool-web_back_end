@@ -50,7 +50,6 @@ function reserveStockById(itemId, stock) {
       return -1;
     } else {
       client.set(item.stock, newStock, redis.print);
-      item.stock = newStock;
       return 1;
     }
   }
@@ -61,10 +60,10 @@ async function getCurrentReservedStockById(itemId) {
   if (item === undefined) {
     return { status: 'Product not found' };
   } else {
-    await client.get(item, (err, data) => {
-      console.log(data);
+    const curStock = await client.get(item.stock, (err, data) => {
       return data;
     });
+    return { itemId: item.id, itemName: item.name, price: item.price, initialAvailableQuantity: item.stock, currentQuantity: curStock };
   }
 };
 
