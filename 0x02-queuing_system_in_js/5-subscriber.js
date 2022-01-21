@@ -5,9 +5,8 @@ sub.on('error', (err) => console.log('Redis client not connected to the server:'
 sub.on('ready', () => console.log('Redis client connected to the server'));
 
 sub.on('message', (channel, message) => {
-    console.log('literally anything');
     if (message === 'KILL_SERVER') {
-        sub.unsubscribe('holberton school channel');
+        sub.unsubscribe(channel);
         sub.quit();
     }
     console.log(message);
