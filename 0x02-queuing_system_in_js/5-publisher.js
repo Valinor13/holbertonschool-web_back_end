@@ -5,10 +5,11 @@ pub.on('error', (err) => console.log('Redis client not connected to the server:'
 pub.on('connect', () => console.log('Redis client connected to the server'));
 
 function publishMessage(message, time) {
-    pub.publish('holberton school channel', message, async () => {
-      await new Promise(resolve => setTimeout(resolve, time));
+  setTimeout(() => {
+    pub.publish('holberton school channel', message, () => {
       console.log(`About to send ${message}`);
     });
+  }, time);
 }
 
 publishMessage("Holberton Student #1 starts course", 100);
